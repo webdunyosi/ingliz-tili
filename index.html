@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EnglishPro - Ingliz tili kursi</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+    
+    @keyframes shine {
+      0% { background-position: -100% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    @keyframes pulse-border {
+      0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+    }
+
+    .animate-pulse-border {
+      animation: pulse-border 2s infinite;
+    }
+
+    .animate-shine {
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(59, 130, 246, 0.2), 
+        transparent);
+      background-size: 200% 100%;
+      animation: shine 3s infinite;
+    }
+
+    .animate-gradient {
+      background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #06b6d4, #3b82f6);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .hero-bg {
+      position: relative;
+      background: linear-gradient(-45deg, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                  url('https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .glass-effect {
+      backdrop-filter: blur(12px) saturate(180%);
+      background: rgba(17, 24, 39, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .glass-effect:hover {
+      backdrop-filter: blur(16px) saturate(200%);
+      background: rgba(17, 24, 39, 0.85);
+      transform: translateY(-5px);
+    }
+
+    .glass-card {
+      backdrop-filter: blur(16px) saturate(180%);
+      background: rgba(17, 24, 39, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .glass-card-hover {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .glass-card-hover:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 
+        0 20px 40px -15px rgba(59, 130, 246, 0.2),
+        0 0 20px 0 rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    .gradient-border {
+      position: relative;
+      background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4);
+      padding: 0.2rem;
+      border-radius: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .gradient-border:hover {
+      transform: scale(1.05);
+      filter: brightness(1.2);
+    }
+
+    .gradient-border::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 1rem;
+      background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4);
+      background-size: 200% 200%;
+      animation: gradientBG 15s ease infinite;
+      z-index: -1;
+      filter: blur(15px);
+      opacity: 0.7;
+      transition: all 0.3s ease;
+    }
+
+    .gradient-border:hover::before {
+      opacity: 1;
+      filter: blur(20px);
+    }
+
+    .glow-effect {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .glow-effect::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4);
+      filter: blur(15px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: -1;
+      border-radius: inherit;
+    }
+
+    .glow-effect:hover::after {
+      opacity: 0.7;
+    }
+
+    .glow-effect:hover {
+      transform: translateY(-5px);
+    }
+
+    .noise-bg {
+      position: relative;
+    }
+
+    .noise-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNhKSIvPjwvc3ZnPg==');
+      opacity: 0.05;
+      pointer-events: none;
+    }
+
+    /* Scroll Progress Indicator */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to right, #3b82f6, #8b5cf6);
+      transform-origin: 0%;
+      z-index: 1000;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(17, 24, 39, 0.95);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(45deg, #60a5fa, #a78bfa);
+    }
+
+    /* Standardized Button Styles */
+    .btn-primary {
+      @apply w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg 
+             relative overflow-hidden transform transition-all duration-300;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    .btn-primary.filled {
+      @apply bg-gradient-to-r from-blue-600 to-purple-600 text-white;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    }
+
+    .btn-primary.filled:hover {
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+    }
+
+    .btn-primary.outlined {
+      @apply border-2 border-blue-400 text-blue-400;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary.outlined:hover {
+      @apply bg-blue-400 text-white;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    }
+
+    .btn-primary.glass {
+      @apply bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-400 
+             border border-blue-500/20;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary.glass:hover {
+      @apply from-blue-500 to-purple-500 text-white;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    }
+
+    /* 3D Card Effect */
+    .card-3d {
+      transform-style: preserve-3d;
+      transform: perspective(1000px);
+    }
+
+    .card-3d-content {
+      transform: translateZ(50px);
+    }
+
+    /* Success Counter */
+    .counter {
+      @apply text-4xl font-bold text-blue-400;
+      transition: all 0.3s ease;
+    }
+
+    /* New Success Stories Section */
+    .success-story {
+      @apply relative overflow-hidden rounded-2xl;
+      transition: all 0.4s ease;
+    }
+
+    .success-story:hover {
+      transform: translateY(-10px);
+    }
+
+    .success-story::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(59, 130, 246, 0.1),
+        transparent
+      );
+      transform: rotate(45deg);
+      animation: shine 3s infinite;
+    }
+
+    /* Floating Elements */
+    .floating-element {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* Scroll Reveal */
+    [data-aos] {
+      opacity: 0;
+      transition-property: transform, opacity;
+    }
+
+    [data-aos].aos-animate {
+      opacity: 1;
+    }
+
+    /* Custom Animations */
+    @keyframes scaleIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .animate-scale-in {
+      animation: scaleIn 0.5s ease forwards;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-200 noise-bg">
+  <div id="particles-js" class="fixed inset-0 z-0 opacity-50"></div>
+  <div class="scroll-progress"></div>
+
+  <!-- Navbar -->
+  <header class="glass-effect sticky top-0 left-0 right-0 w-full z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-6">
+      <h1 class="text-3xl font-bold">
+        <span class="bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 bg-clip-text text-transparent">
+          EnglishPro
+        </span>
+      </h1>
+      <nav class="space-x-8">
+        <a href="#free-videos" class="relative group">
+          <span class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Videolar</span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#pricing" class="relative group">
+          <span class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Narxlar</span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-bg min-h-screen flex items-center justify-center text-center py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/50 to-gray-900"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(59,130,246,0.1)_0%,_transparent_70%)]"></div>
+    <div class="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
+      <div class="glass-card p-6 sm:p-8 md:p-12 rounded-3xl backdrop-blur-lg">
+        <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 text-white leading-tight">
+          Ingliz tilini mukammal o'rganing
+        </h2>
+        <p class="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 sm:mb-10">EnglishPro bilan tez va samarali o'rganing</p>
+        <div class="btn-container">
+          <a href="#pricing" class="btn-primary filled glow-effect">
+            <span class="relative z-10">Kursga yozilish</span>
+          </a>
+          <a href="#free-videos" class="btn-primary outlined">
+            <span class="relative z-10">Bepul darslar</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-24 sm:h-32 bg-gradient-to-t from-gray-900 to-transparent"></div>
+  </section>
+
+  <!-- Free Videos Section -->
+  <section id="free-videos" class="py-20 relative">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(59,130,246,0.1),_transparent_50%)]"></div>
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
+      <h3 class="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 bg-clip-text text-transparent" data-aos="fade-up">
+        Bepul video darslar
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="glass-card glass-card-hover rounded-2xl" data-aos="fade-up" data-aos-delay="100">
+          <div class="relative">
+            <iframe class="w-full h-48 rounded-t-2xl" src="https://www.youtube.com/embed/d-fvgkbTED0?si=4V-qXldYpaF07HIg"
+              title="YouTube video player" allowfullscreen></iframe>
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+          <div class="p-8">
+            <h4 class="text-xl font-bold text-white mb-3">Dars 1: Boshlang'ich grammatika</h4>
+            <p class="text-gray-400">Ingliz tilining asosiy qoidalari bilan tanishing.</p>
+            <button class="btn-primary glass glow-effect">
+              Darsni ko'rish
+            </button>
+          </div>
+        </div>
+        <div class="glass-card glass-card-hover rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+          <div class="relative">
+            <iframe class="w-full h-48 rounded-t-2xl" src="https://www.youtube.com/embed/n-uTwzzVnsg?si=zW6l_zDiGaH9dGXC"
+              title="Video 2" allowfullscreen></iframe>
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+          <div class="p-8">
+            <h4 class="text-xl font-bold text-white mb-3">Dars 2: So'z boyligini oshirish</h4>
+            <p class="text-gray-400">Eng ko'p ishlatiladigan so'zlarni o'rganing.</p>
+            <button class="btn-primary glass glow-effect">
+              Darsni ko'rish
+            </button>
+          </div>
+        </div>
+        <div class="glass-card glass-card-hover rounded-2xl" data-aos="fade-up" data-aos-delay="300">
+          <div class="relative">
+            <iframe class="w-full h-48 rounded-t-2xl" src="https://www.youtube.com/embed/0Gi1DknYo5A?si=5hTa3l9CAFHHDSUX"
+              title="Video 3" allowfullscreen></iframe>
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+          <div class="p-8">
+            <h4 class="text-xl font-bold text-white mb-3">Dars 3: To'g'ri talaffuz</h4>
+            <p class="text-gray-400">Inglizcha so'zlarni to'g'ri talaffuz qilishni o'rganing.</p>
+            <button class="btn-primary glass glow-effect">
+              Darsni ko'rish
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-20 relative">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_rgba(59,130,246,0.1),_transparent_50%)]"></div>
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
+      <h3 class="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 bg-clip-text text-transparent" data-aos="fade-up">
+        Nima uchun bizni tanlashadi?
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="glass-card glass-card-hover rounded-2xl p-8 relative group" data-aos="fade-up" data-aos-delay="100">
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="relative z-10">
+            <div class="w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center">
+              <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h4 class="text-xl font-bold text-white mb-4">Tajriba</h4>
+            <p class="text-gray-400">10 yillik tajribaga ega o'qituvchilar</p>
+          </div>
+        </div>
+        <div class="glass-card glass-card-hover rounded-2xl p-8 relative group" data-aos="fade-up" data-aos-delay="200">
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="relative z-10">
+            <div class="w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center">
+              <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h4 class="text-xl font-bold text-white mb-4">Sertifikat</h4>
+            <p class="text-gray-400">Har bir o'quvchiga yakunda rasmiy sertifikat</p>
+          </div>
+        </div>
+        <div class="glass-card glass-card-hover rounded-2xl p-8 relative group" data-aos="fade-up" data-aos-delay="300">
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="relative z-10">
+            <div class="w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center">
+              <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h4 class="text-xl font-bold text-white mb-4">Onlayn / Offline</h4>
+            <p class="text-gray-400">Istalgan shaklda qatnashing</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-20 relative">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(59,130,246,0.1),_transparent_50%)]"></div>
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
+      <h3 class="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 bg-clip-text text-transparent" data-aos="fade-up">
+        Narx rejalari
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="glass-card glass-card-hover rounded-2xl p-8 relative group" data-aos="fade-up" data-aos-delay="100">
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="relative z-10">
+            <h4 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-4">Boshlang'ich</h4>
+            <p class="text-4xl font-bold text-white mb-6">350 000</p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center text-gray-300">
+                <svg class="w-5 h-5 text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                4 hafta / Haftasiga 2 dars
+              </li>
+            </ul>
+            <button class="btn-primary filled glow-effect">
+              Ro'yxatdan o'tish
+            </button>
+          </div>
+        </div>
+        <div class="glass-card glass-card-hover rounded-2xl p-8 relative group" data-aos="fade-up" data-aos-delay="200">
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="relative z-10">
+            <h4 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-4">Standart</h4>
+            <p class="text-4xl font-bold text-white mb-6">350 000</p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center text-gray-300">
+                <svg class="w-5 h-5 text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                6 hafta / Haftasiga 3 dars + Sertifikat
+              </li>
+            </ul>
+            <button class="btn-primary filled glow-effect">
+              Ro'yxatdan o'tish
+            </button>
+          </div>
+        </div>
+        <div class="glass-card glass-card-hover rounded-2xl p-8 relative group" data-aos="fade-up" data-aos-delay="300">
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="relative z-10">
+            <h4 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-4">Intensiv</h4>
+            <p class="text-4xl font-bold text-white mb-6">350 000</p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center text-gray-300">
+                <svg class="w-5 h-5 text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                8 hafta / Har kuni dars + IELTS tayyorgarlik
+              </li>
+            </ul>
+            <button class="btn-primary filled glow-effect">
+              Ro'yxatdan o'tish
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Stories Section -->
+  <section class="py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(59,130,246,0.1),_transparent_50%)]"></div>
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
+      <h3 class="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 bg-clip-text text-transparent" data-aos="fade-up">
+        Muvaffaqiyat tarixi
+      </h3>
+
+      <!-- Statistics -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
+        <div class="glass-card p-8 text-center card-3d" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-3d-content">
+            <div class="counter" data-target="1000">0</div>
+            <p class="text-gray-400 mt-2">O'quvchilar</p>
+          </div>
+        </div>
+        <div class="glass-card p-8 text-center card-3d" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-3d-content">
+            <div class="counter" data-target="50">0</div>
+            <p class="text-gray-400 mt-2">O'qituvchilar</p>
+          </div>
+        </div>
+        <div class="glass-card p-8 text-center card-3d" data-aos="fade-up" data-aos-delay="300">
+          <div class="card-3d-content">
+            <div class="counter" data-target="95">0</div>
+            <p class="text-gray-400 mt-2">Muvaffaqiyat %</p>
+          </div>
+        </div>
+        <div class="glass-card p-8 text-center card-3d" data-aos="fade-up" data-aos-delay="400">
+          <div class="card-3d-content">
+            <div class="counter" data-target="500">0</div>
+            <p class="text-gray-400 mt-2">IELTS topshirganlar</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Success Stories Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="success-story glass-card p-8" data-aos="fade-up" data-aos-delay="100">
+          <div class="relative mb-6">
+            <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-blue-500/20">
+              <img src="https://i.pravatar.cc/150?img=1" alt="Student 1" class="w-full h-full object-cover">
+            </div>
+            <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+              <span class="text-white font-bold">8.0</span>
+            </div>
+          </div>
+          <h4 class="text-xl font-bold text-white mb-2">Aziza Murodova</h4>
+          <p class="text-gray-400 mb-4">3 oyda IELTS 8.0 natija</p>
+          <div class="flex items-center text-blue-400">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+            <span>IELTS Expert</span>
+          </div>
+        </div>
+
+        <div class="success-story glass-card p-8" data-aos="fade-up" data-aos-delay="200">
+          <div class="relative mb-6">
+            <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-blue-500/20">
+              <img src="https://i.pravatar.cc/150?img=2" alt="Student 2" class="w-full h-full object-cover">
+            </div>
+            <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+              <span class="text-white font-bold">7.5</span>
+            </div>
+          </div>
+          <h4 class="text-xl font-bold text-white mb-2">Sardor Alimov</h4>
+          <p class="text-gray-400 mb-4">2 oyda IELTS 7.5 natija</p>
+          <div class="flex items-center text-blue-400">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+            <span>Speaking Pro</span>
+          </div>
+        </div>
+
+        <div class="success-story glass-card p-8" data-aos="fade-up" data-aos-delay="300">
+          <div class="relative mb-6">
+            <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-blue-500/20">
+              <img src="https://i.pravatar.cc/150?img=3" alt="Student 3" class="w-full h-full object-cover">
+            </div>
+            <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+              <span class="text-white font-bold">7.0</span>
+            </div>
+          </div>
+          <h4 class="text-xl font-bold text-white mb-2">Nilufar Karimova</h4>
+          <p class="text-gray-400 mb-4">4 oyda IELTS 7.0 natija</p>
+          <div class="flex items-center text-blue-400">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+            <span>Writing Master</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="section-bg py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <h3 class="text-3xl font-semibold text-center mb-12 text-white animate-fadeIn">Ko'p so'raladigan savollar</h3>
+      <div class="space-y-6">
+        <div class="glass-effect p-6 rounded-xl glow-effect hover-scale">
+          <h4 class="text-lg font-bold text-blue-400">1. Kursga qanday yozilaman?</h4>
+          <p class="text-gray-300 mt-2">Kursga yozilish uchun yuqoridagi "Ro'yxatdan o'tish" tugmasini bosishingiz kifoya.</p>
+        </div>
+        <div class="glass-effect p-6 rounded-xl glow-effect hover-scale">
+          <h4 class="text-lg font-bold text-blue-400">2. Darslar qanday formatda o'tiladi?</h4>
+          <p class="text-gray-300 mt-2">Darslar onlayn va offline formatda o'tiladi. Sizga qulay bo'lgan shaklni tanlashingiz mumkin.</p>
+        </div>
+        <div class="glass-effect p-6 rounded-xl glow-effect hover-scale">
+          <h4 class="text-lg font-bold text-blue-400">3. To'lovni qanday amalga oshiraman?</h4>
+          <p class="text-gray-300 mt-2">To'lovni bank kartasi yoki naqd pul orqali amalga oshirishingiz mumkin.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="reviews" class="py-20 max-w-6xl mx-auto px-4">
+    <h3 class="text-3xl font-semibold text-center mb-12 text-white">O'quvchilar fikri</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 ease-in-out transform hover:scale-105 dark:bg-gray-800">
+        <p class="text-gray-400">"FUTURE ACADEMY orqali 3 oyda IELTS 7.0 oldim. Juda zo'r kurs!"</p>
+        <p class="mt-4 font-semibold text-blue-400">— Aziza M.</p>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 ease-in-out transform hover:scale-105 dark:bg-gray-800">
+        <p class="text-gray-400">"Onlayn darslar juda qulay, va o'qituvchilar professional!"</p>
+        <p class="mt-4 font-semibold text-blue-400">— sarvar s.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teachers Section -->
+  <section id="teachers" class="bg-gray-900 py-20 dark:bg-gray-900">
+    <div class="max-w-6xl mx-auto px-4">
+      <h3 class="text-3xl font-semibold text-center mb-12 text-white">Bizning o'qituvchilar</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+        <div class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 ease-in-out transform hover:scale-105 dark:bg-gray-800">
+          <img src="111.jpg" alt="O'qituvchi 1" class="w-32 h-32 mx-auto rounded-full mb-4">
+          <h4 class="text-xl font-bold text-blue-400">O'qituvchi 1</h4>
+          <p class="text-gray-400 mt-2">10 yillik tajribaga ega IELTS mutaxassisi</p>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 ease-in-out transform hover:scale-105 dark:bg-gray-800">
+          <img src="222.jpg" alt="O'qituvchi 2" class="w-32 h-32 mx-auto rounded-full mb-4">
+          <h4 class="text-xl font-bold text-blue-400">O'qituvchi 2</h4>
+          <p class="text-gray-400 mt-2">Native speaker va talaffuz bo'yicha ekspert</p>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 ease-in-out transform hover:scale-105 dark:bg-gray-800">
+          <img src="333.jfif" alt="O'qituvchi 3" class="w-32 h-32 mx-auto rounded-full mb-4">
+          <h4 class="text-xl font-bold text-blue-400">O'qituvchi 3</h4>
+          <p class="text-gray-400 mt-2">Grammatika va yozuv bo'yicha mutaxassis</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-400 py-8 text-center dark:bg-gray-800">
+    <p>&copy; 2025 EnglishPro. Barcha huquqlar himoyalangan.</p>
+  </footer>
+
+  <!-- Contact Information -->
+  <div class="fixed bottom-4 right-4 glass-card rounded-2xl p-6 text-gray-300 shadow-lg glass-card-hover z-40">
+    <div class="flex items-center space-x-4 mb-4">
+      <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+      <p class="font-semibold">Online - Bog'lanish uchun</p>
+    </div>
+    <div class="space-y-2">
+      <a href="tel:+998910886464" class="flex items-center space-x-3 hover:text-blue-400 transition duration-300">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+        </svg>
+        <span>+998 91 088 64 64</span>
+      </a>
+    </div>
+    <p id="currentDateTime" class="mt-4 text-sm text-gray-400"></p>
+  </div>
+
+  <script>
+    // Initialize Vanilla Tilt for 3D card effects
+    VanillaTilt.init(document.querySelectorAll(".card-3d"), {
+      max: 15,
+      speed: 400,
+      glare: true,
+      "max-glare": 0.2,
+    });
+
+    // Scroll Progress Indicator
+    window.addEventListener('scroll', () => {
+      const scrollProgress = document.querySelector('.scroll-progress');
+      const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      scrollProgress.style.transform = `scaleX(${scrolled / 100})`;
+    });
+
+    // Success Counter Animation
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      const target = +counter.getAttribute('data-target');
+      const increment = target / 200;
+      
+      const updateCounter = () => {
+        const count = +counter.innerText;
+        if (count < target) {
+          counter.innerText = Math.ceil(count + increment);
+          setTimeout(updateCounter, 10);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      
+      updateCounter();
+    });
+
+    // Enhanced Particles.js Configuration
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: '#3b82f6' },
+        shape: { 
+          type: 'circle',
+          stroke: { width: 0, color: '#000000' },
+          polygon: { nb_sides: 5 },
+        },
+        opacity: {
+          value: 0.5,
+          random: true,
+          anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+        },
+        size: {
+          value: 3,
+          random: true,
+          anim: { enable: true, speed: 2, size_min: 0.1, sync: false }
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: '#3b82f6',
+          opacity: 0.2,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: 'none',
+          random: true,
+          straight: false,
+          out_mode: 'out',
+          bounce: false,
+          attract: { enable: true, rotateX: 600, rotateY: 1200 }
+        }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: {
+          onhover: { enable: true, mode: 'grab' },
+          onclick: { enable: true, mode: 'push' },
+          resize: true
+        },
+        modes: {
+          grab: { distance: 140, line_linked: { opacity: 0.5 } },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
+
+    // Enhanced AOS Configuration
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100,
+      easing: 'ease-out-cubic'
+    });
+
+    // Real-time Date/Time Update
+    function updateDateTime() {
+      const now = new Date();
+      const options = { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric', 
+        hour: '2-digit', 
+        minute: '2-digit',
+        second: '2-digit'
+      };
+      document.getElementById('currentDateTime').textContent = now.toLocaleDateString('uz-UZ', options);
+    }
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
