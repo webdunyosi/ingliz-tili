@@ -1,1 +1,1 @@
-https://ingliz-tili-ten.vercel.app/
+https://ingliz-tili-pi.vercel.app/
