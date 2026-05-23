@@ -741,10 +741,16 @@
       const phoneInput = document.getElementById('phone').value.trim();
       const plan = planSelect.value;
 
-      // Phone validation (exactly 9 digits)
-      const digitsOnly = phoneInput.replace(/\D/g, '');
+      // Smart Phone validation (automatically handles +998, 998, 8, etc.)
+      let digitsOnly = phoneInput.replace(/\D/g, '');
+      if (digitsOnly.length === 12 && digitsOnly.startsWith('998')) {
+        digitsOnly = digitsOnly.substring(3);
+      } else if (digitsOnly.length === 10 && digitsOnly.startsWith('8')) {
+        digitsOnly = digitsOnly.substring(1);
+      }
+
       if (digitsOnly.length !== 9) {
-        alert("Iltimos, telefon raqamini to'g'ri shaklda kiriting (9 xonali raqam, masalan: 901234567)!");
+        alert("Iltimos, telefon raqamini to'g'ri shaklda kiriting!\nMasalan: 90 123 45 67 (9 xonali raqam)");
         return;
       }
 
@@ -788,7 +794,10 @@
         }
       } catch (error) {
         console.error('Error sending request:', error);
-        alert("Xatolik yuz berdi: " + error.message + "\n\n💡 MUHIM ESLATMA: Agar ushbu botni hali ishga tushirmagan bo'lsangiz, Telegram ilovasida botni topib, /start tugmasini bosing! Aks holda Telegram bot sizga xabar yuborishiga ruxsat bermaydi.");
+        alert("Xatolik yuz berdi: " + error.message + "\n\n💡 MUHIM DIAGNOSTIKA:\n" +
+              "1. Telegramda botga kirib /start tugmasini bosing! (Majburiy)\n" +
+              "2. Brauzeringizda Ad-blocker (reklama to'suvchi), Brave Shield yoki VPN yoqilgan bo'lsa, o'chirib tekshiring (bular Telegram API so'rovini to'sib qo'yishi mumkin).\n" +
+              "3. Internet aloqangizni tekshiring.");
       } finally {
         submitBtn.disabled = false;
         loadingSpinner.classList.add('hidden');
@@ -807,10 +816,16 @@
       const formContent = document.getElementById('static-form-content');
       const successContent = document.getElementById('static-modal-success-content');
 
-      // Phone validation (exactly 9 digits)
-      const digitsOnly = phoneInput.replace(/\D/g, '');
+      // Smart Phone validation (automatically handles +998, 998, 8, etc.)
+      let digitsOnly = phoneInput.replace(/\D/g, '');
+      if (digitsOnly.length === 12 && digitsOnly.startsWith('998')) {
+        digitsOnly = digitsOnly.substring(3);
+      } else if (digitsOnly.length === 10 && digitsOnly.startsWith('8')) {
+        digitsOnly = digitsOnly.substring(1);
+      }
+
       if (digitsOnly.length !== 9) {
-        alert("Iltimos, telefon raqamini to'g'ri shaklda kiriting (9 xonali raqam, masalan: 901234567)!");
+        alert("Iltimos, telefon raqamini to'g'ri shaklda kiriting!\nMasalan: 90 123 45 67 (9 xonali raqam)");
         return;
       }
 
@@ -854,7 +869,10 @@
         }
       } catch (error) {
         console.error('Error sending request:', error);
-        alert("Xatolik yuz berdi: " + error.message + "\n\n💡 MUHIM ESLATMA: Agar ushbu botni hali ishga tushirmagan bo'lsangiz, Telegram ilovasida botni topib, /start tugmasini bosing! Aks holda Telegram bot sizga xabar yuborishiga ruxsat bermaydi.");
+        alert("Xatolik yuz berdi: " + error.message + "\n\n💡 MUHIM DIAGNOSTIKA:\n" +
+              "1. Telegramda botga kirib /start tugmasini bosing! (Majburiy)\n" +
+              "2. Brauzeringizda Ad-blocker (reklama to'suvchi), Brave Shield yoki VPN yoqilgan bo'lsa, o'chirib tekshiring (bular Telegram API so'rovini to'sib qo'yishi mumkin).\n" +
+              "3. Internet aloqangizni tekshiring.");
       } finally {
         submitBtn.disabled = false;
         loadingSpinner.classList.add('hidden');
