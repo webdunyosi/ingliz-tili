@@ -28,6 +28,7 @@ Loyiha foydalanuvchini jalb qilish va yuqori konversiyani ta'minlash uchun eng s
 *   **📱 To'liq Responsive (Moslashuvchan)**: Barcha turdagi qurilmalar (smartfon, planshet, noutbuk) uchun mukammal moslashgan maket.
 *   **📞 Aloqa kartasi va Jonli Soat**: Foydalanuvchi bilan bog'lanish uchun doimiy faol aloqa bloki va real vaqtda yangilanuvchi o'zbekcha elektron soat.
 *   **🧭 Scroll-Progress & Smooth Navigation**: Foydalanuvchining sahifadagi joylashuvini ko'rsatuvchi yuqori progress-bar va silliq scroll animatsiyasi.
+*   **📝 Kursga Qabul Bo'limi & Telegram Integratsiyasi**: Saytda to'g'ridan-to'g'ri integratsiya qilingan ariza qoldirish formasi va oynasimon ro'yxatdan o'tish modali yaratildi. Arizalar avtomatik tarzda maxsus Telegram botiga yuboriladi.
 
 ---
 

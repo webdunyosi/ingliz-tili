@@ -35,6 +35,10 @@
           <span class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Narxlar</span>
           <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
         </a>
+        <a href="#enroll" class="relative group">
+          <span class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Qabulga yozilish</span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
+        </a>
       </nav>
     </div>
   </header>
@@ -328,6 +332,155 @@
     </div>
   </section>
 
+  <!-- Registration Section -->
+  <section id="enroll" class="py-20 relative">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(139,92,246,0.1),_transparent_60%)]"></div>
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Info column (5 cols) -->
+        <div class="lg:col-span-5 space-y-8" data-aos="fade-right">
+          <div>
+            <span class="px-4 py-1.5 rounded-full text-xs font-semibold bg-blue-500/10 border border-blue-500/30 text-blue-400 uppercase tracking-wider">
+              Qabul boshlandi
+            </span>
+            <h3 class="text-4xl sm:text-5xl font-extrabold text-white leading-tight mt-4">
+              Ingliz tilida <br>
+              <span class="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
+                erkin gapiring!
+              </span>
+            </h3>
+            <p class="text-gray-400 mt-4 leading-relaxed">
+              Biz bilan ingliz tilini tizimli va samarali o'rganing. Hozirgi kunda ro'yxatdan o'tib, birinchi darsga mutlaqo bepul qatnashing!
+            </p>
+          </div>
+
+          <!-- Benefits list -->
+          <div class="space-y-4">
+            <div class="flex items-start space-x-4">
+              <div class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+                <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div>
+                <h5 class="text-white font-bold text-base">🎁 Bepul birinchi sinov darsi</h5>
+                <p class="text-gray-400 text-sm">Metodikamiz bilan yaqindan tanishish imkoniyati</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+                <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <div>
+                <h5 class="text-white font-bold text-base">📈 IELTS 7.5+ kafolati</h5>
+                <p class="text-gray-400 text-sm">Biz belgilangan natijaga erishishingizga kafolat beramiz</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+                <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <div>
+                <h5 class="text-white font-bold text-base">💻 Zamonaviy yondashuv</h5>
+                <p class="text-gray-400 text-sm">Interaktiv o'yinlar, munozaralar va doimiy Speaking darslari</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form column (7 cols) -->
+        <div class="lg:col-span-7" data-aos="fade-left">
+          <div class="glass-card rounded-3xl p-8 sm:p-10 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-3xl pointer-events-none"></div>
+            
+            <div id="static-form-content">
+              <h4 class="text-2xl font-bold text-white mb-6">Kursga yozilish</h4>
+              
+              <form id="static-registration-form" onsubmit="submitStaticForm(event)" class="space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <!-- Full Name -->
+                  <div>
+                    <label class="block text-sm font-semibold text-gray-300 mb-2" for="static-fullname">Ism va Familiyangiz</label>
+                    <input type="text" id="static-fullname" required
+                      class="w-full px-4 py-3 rounded-xl bg-gray-900/50 border border-gray-700/50 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-300"
+                      placeholder="Masalan: Sardor Alimov">
+                  </div>
+
+                  <!-- Phone Number -->
+                  <div>
+                    <label class="block text-sm font-semibold text-gray-300 mb-2" for="static-phone">Telefon raqamingiz</label>
+                    <div class="relative">
+                      <span class="absolute left-4 top-3.5 text-gray-400 select-none font-medium">+998</span>
+                      <input type="tel" id="static-phone" required
+                        class="w-full pl-16 pr-4 py-3 rounded-xl bg-gray-900/50 border border-gray-700/50 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-300"
+                        placeholder="90 123 45 67">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Selected Plan -->
+                <div>
+                  <label class="block text-sm font-semibold text-gray-300 mb-2" for="static-plan">Tanlang</label>
+                  <div class="relative">
+                    <select id="static-plan" required
+                      class="w-full px-4 py-3 rounded-xl bg-gray-900/50 border border-gray-700/50 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-300 appearance-none cursor-pointer">
+                      <option value="" disabled selected>Kursni tanlang...</option>
+                      <option value="Boshlang'ich">Boshlang'ich (350 000 UZS / 4 hafta)</option>
+                      <option value="Standart">Standart (350 000 UZS / 6 hafta)</option>
+                      <option value="Intensiv">Intensiv (350 000 UZS / 8 hafta)</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                      <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="static-submit-btn"
+                  class="w-full btn-primary filled glow-effect rounded-xl py-3 px-6 text-white font-bold cursor-pointer transition-all duration-300 flex items-center justify-center space-x-2">
+                  <span>Ariza yuborish</span>
+                  <svg id="static-loading-spinner" class="hidden animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                </button>
+              </form>
+            </div>
+
+            <!-- Success Screen -->
+            <div id="static-modal-success-content" class="hidden text-center py-8 space-y-6">
+              <div class="mx-auto w-20 h-20 bg-green-500/10 border-2 border-green-500/20 rounded-full flex items-center justify-center animate-bounce">
+                <svg class="w-10 h-10 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-3xl font-bold text-white mb-3">Muvaffaqiyatli!</h3>
+                <p class="text-gray-300 max-w-sm mx-auto">
+                  Arizangiz muvaffaqiyatli yuborildi. Operatorlarimiz 15 daqiqa ichida siz bilan bog'lanishadi!
+                </p>
+              </div>
+              <button onclick="resetStaticForm()" class="btn-primary outlined px-6 py-2 rounded-xl text-sm font-semibold cursor-pointer">
+                Yangi ariza
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
   <!-- FAQ Section -->
   <section id="faq" class="section-bg py-20">
     <div class="max-w-6xl mx-auto px-4">
@@ -605,12 +758,12 @@
       const botToken = '8198213760:AAED-i6LGAsbRtDDAr0jyZoYwSQ0CS1DGCY';
       const chatId = '8756366803';
 
-      // Telegram Message Markdown
-      const message = `🔔 *YANGI ARIZA KELDI!*\n\n` +
-                      `👤 *F.I.O.:* ${fullname}\n` +
-                      `📞 *Telefon:* ${formattedPhone}\n` +
-                      `📚 *Tanlangan Kurs:* ${plan}\n` +
-                      `📅 *Sana:* ${new Date().toLocaleString('uz-UZ')}`;
+      // Telegram Message in HTML (much more robust than Markdown)
+      const message = `🔔 <b>YANGI ARIZA KELDI!</b>\n\n` +
+                      `👤 <b>F.I.O.:</b> ${fullname}\n` +
+                      `📞 <b>Telefon:</b> ${formattedPhone}\n` +
+                      `📚 <b>Tanlangan Kurs:</b> ${plan}\n` +
+                      `📅 <b>Sana:</b> ${new Date().toLocaleString('uz-UZ')}`;
 
       try {
         const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
@@ -621,7 +774,7 @@
           body: JSON.stringify({
             chat_id: chatId,
             text: message,
-            parse_mode: 'Markdown'
+            parse_mode: 'HTML'
           })
         });
 
@@ -629,15 +782,92 @@
           formContent.classList.add('hidden');
           successContent.classList.remove('hidden');
         } else {
-          throw new Error('Telegram API error');
+          const errData = await response.json();
+          console.error('Telegram API Error Response:', errData);
+          throw new Error(errData.description || 'Telegram API xatoligi');
         }
       } catch (error) {
         console.error('Error sending request:', error);
-        alert("Kechirasiz, xatolik yuz berdi. Iltimos qaytadan urinib ko'ring yoki telefon orqali bog'laning!");
+        alert("Xatolik yuz berdi: " + error.message + "\n\n💡 MUHIM ESLATMA: Agar ushbu botni hali ishga tushirmagan bo'lsangiz, Telegram ilovasida botni topib, /start tugmasini bosing! Aks holda Telegram bot sizga xabar yuborishiga ruxsat bermaydi.");
       } finally {
         submitBtn.disabled = false;
         loadingSpinner.classList.add('hidden');
       }
+    };
+
+    // Static Form Submission
+    window.submitStaticForm = async function(event) {
+      event.preventDefault();
+      
+      const fullname = document.getElementById('static-fullname').value.trim();
+      const phoneInput = document.getElementById('static-phone').value.trim();
+      const plan = document.getElementById('static-plan').value;
+      const submitBtn = document.getElementById('static-submit-btn');
+      const loadingSpinner = document.getElementById('static-loading-spinner');
+      const formContent = document.getElementById('static-form-content');
+      const successContent = document.getElementById('static-modal-success-content');
+
+      // Phone validation (exactly 9 digits)
+      const digitsOnly = phoneInput.replace(/\D/g, '');
+      if (digitsOnly.length !== 9) {
+        alert("Iltimos, telefon raqamini to'g'ri shaklda kiriting (9 xonali raqam, masalan: 901234567)!");
+        return;
+      }
+
+      const formattedPhone = `+998 ${digitsOnly.substring(0, 2)} ${digitsOnly.substring(2, 5)} ${digitsOnly.substring(5, 7)} ${digitsOnly.substring(7, 9)}`;
+
+      // Show loading spinner
+      submitBtn.disabled = true;
+      loadingSpinner.classList.remove('hidden');
+
+      // Bot details from user request
+      const botToken = '8198213760:AAED-i6LGAsbRtDDAr0jyZoYwSQ0CS1DGCY';
+      const chatId = '8756366803';
+
+      // Telegram Message in HTML (much more robust than Markdown)
+      const message = `🔔 <b>YANGI ARIZA KELDI (SAYTDAN)!</b>\n\n` +
+                      `👤 <b>F.I.O.:</b> ${fullname}\n` +
+                      `📞 <b>Telefon:</b> ${formattedPhone}\n` +
+                      `📚 <b>Tanlangan Kurs:</b> ${plan}\n` +
+                      `📅 <b>Sana:</b> ${new Date().toLocaleString('uz-UZ')}`;
+
+      try {
+        const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: message,
+            parse_mode: 'HTML'
+          })
+        });
+
+        if (response.ok) {
+          formContent.classList.add('hidden');
+          successContent.classList.remove('hidden');
+        } else {
+          const errData = await response.json();
+          console.error('Telegram API Error Response:', errData);
+          throw new Error(errData.description || 'Telegram API xatoligi');
+        }
+      } catch (error) {
+        console.error('Error sending request:', error);
+        alert("Xatolik yuz berdi: " + error.message + "\n\n💡 MUHIM ESLATMA: Agar ushbu botni hali ishga tushirmagan bo'lsangiz, Telegram ilovasida botni topib, /start tugmasini bosing! Aks holda Telegram bot sizga xabar yuborishiga ruxsat bermaydi.");
+      } finally {
+        submitBtn.disabled = false;
+        loadingSpinner.classList.add('hidden');
+      }
+    };
+
+    window.resetStaticForm = function() {
+      const formContent = document.getElementById('static-form-content');
+      const successContent = document.getElementById('static-modal-success-content');
+      const form = document.getElementById('static-registration-form');
+      form.reset();
+      successContent.classList.add('hidden');
+      formContent.classList.remove('hidden');
     };
   </script>
 
